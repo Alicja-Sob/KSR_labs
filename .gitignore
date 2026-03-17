@@ -39,3 +39,8 @@
 
 # debug information files
 *.dwo
+
+# folders as in lab instructions
+Debug/*
+Release/*
+.vs/*
