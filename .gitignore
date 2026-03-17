@@ -40,7 +40,10 @@
 # debug information files
 *.dwo
 
-# folders as in lab instructions
-Debug/*
-Release/*
-.vs/*
+# stuff not needed as in lab instructions
+**/Debug/*
+**/Release/*
+**/.vs/*
+
+*/_0_cleanCode.ps1
+*/sigcheck64.exe
