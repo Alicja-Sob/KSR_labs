@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\sobal\\OtherCodingProjects\\KSR lab\\COM_labs\\COMlab_1\\4\\zad4\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8F570577-245F-4D4E-8C04-2AA1A9825C13}|zad4\\zad4.vcxproj|C:\\Users\\sobal\\OtherCodingProjects\\KSR lab\\COM_labs\\COMlab_1\\4\\zad4\\zad4\\dllmain3.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8F570577-245F-4D4E-8C04-2AA1A9825C13}|zad4\\zad4.vcxproj|solutionrelative:zad4\\dllmain3.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "dllmain3.cpp",
+              "DocumentMoniker": "C:\\Users\\sobal\\OtherCodingProjects\\KSR lab\\COM_labs\\COMlab_1\\4\\zad4\\zad4\\dllmain3.cpp",
+              "RelativeDocumentMoniker": "zad4\\dllmain3.cpp",
+              "ToolTip": "C:\\Users\\sobal\\OtherCodingProjects\\KSR lab\\COM_labs\\COMlab_1\\4\\zad4\\zad4\\dllmain3.cpp",
+              "RelativeToolTip": "zad4\\dllmain3.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-03-04T01:25:32.305Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

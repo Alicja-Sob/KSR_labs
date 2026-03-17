@@ -1,0 +1,122 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\sobal\\OtherCodingProjects\\KSR lab\\COM_labs\\COMlab_1\\4\\zad4\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8F570577-245F-4D4E-8C04-2AA1A9825C13}|zad4\\zad4.vcxproj|C:\\Users\\sobal\\OtherCodingProjects\\KSR lab\\COM_labs\\COMlab_1\\4\\zad4\\zad4\\dllmain3.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8F570577-245F-4D4E-8C04-2AA1A9825C13}|zad4\\zad4.vcxproj|solutionrelative:zad4\\dllmain3.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F570577-245F-4D4E-8C04-2AA1A9825C13}|zad4\\zad4.vcxproj|C:\\Users\\sobal\\OtherCodingProjects\\KSR lab\\COM_labs\\COMlab_1\\4\\zad4\\zad4\\fabryka3.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8F570577-245F-4D4E-8C04-2AA1A9825C13}|zad4\\zad4.vcxproj|solutionrelative:zad4\\fabryka3.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F570577-245F-4D4E-8C04-2AA1A9825C13}|zad4\\zad4.vcxproj|C:\\Users\\sobal\\OtherCodingProjects\\KSR lab\\COM_labs\\COMlab_1\\4\\zad4\\zad4\\fabryka3.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8F570577-245F-4D4E-8C04-2AA1A9825C13}|zad4\\zad4.vcxproj|solutionrelative:zad4\\fabryka3.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F570577-245F-4D4E-8C04-2AA1A9825C13}|zad4\\zad4.vcxproj|C:\\Users\\sobal\\OtherCodingProjects\\KSR lab\\COM_labs\\COMlab_1\\4\\zad4\\zad4\\guid3.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8F570577-245F-4D4E-8C04-2AA1A9825C13}|zad4\\zad4.vcxproj|solutionrelative:zad4\\guid3.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F570577-245F-4D4E-8C04-2AA1A9825C13}|zad4\\zad4.vcxproj|C:\\Users\\sobal\\OtherCodingProjects\\KSR lab\\COM_labs\\COMlab_1\\4\\zad4\\zad4\\klasa3.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8F570577-245F-4D4E-8C04-2AA1A9825C13}|zad4\\zad4.vcxproj|solutionrelative:zad4\\klasa3.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F570577-245F-4D4E-8C04-2AA1A9825C13}|zad4\\zad4.vcxproj|C:\\Users\\sobal\\OtherCodingProjects\\KSR lab\\COM_labs\\COMlab_1\\4\\zad4\\zad4\\klasa3.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8F570577-245F-4D4E-8C04-2AA1A9825C13}|zad4\\zad4.vcxproj|solutionrelative:zad4\\klasa3.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "fabryka3.cpp",
+              "DocumentMoniker": "C:\\Users\\sobal\\OtherCodingProjects\\KSR lab\\COM_labs\\COMlab_1\\4\\zad4\\zad4\\fabryka3.cpp",
+              "RelativeDocumentMoniker": "zad4\\fabryka3.cpp",
+              "ToolTip": "C:\\Users\\sobal\\OtherCodingProjects\\KSR lab\\COM_labs\\COMlab_1\\4\\zad4\\zad4\\fabryka3.cpp",
+              "RelativeToolTip": "zad4\\fabryka3.cpp",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-03-04T01:26:41.641Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "fabryka3.h",
+              "DocumentMoniker": "C:\\Users\\sobal\\OtherCodingProjects\\KSR lab\\COM_labs\\COMlab_1\\4\\zad4\\zad4\\fabryka3.h",
+              "RelativeDocumentMoniker": "zad4\\fabryka3.h",
+              "ToolTip": "C:\\Users\\sobal\\OtherCodingProjects\\KSR lab\\COM_labs\\COMlab_1\\4\\zad4\\zad4\\fabryka3.h",
+              "RelativeToolTip": "zad4\\fabryka3.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-03-04T01:26:40.316Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "guid3.cpp",
+              "DocumentMoniker": "C:\\Users\\sobal\\OtherCodingProjects\\KSR lab\\COM_labs\\COMlab_1\\4\\zad4\\zad4\\guid3.cpp",
+              "RelativeDocumentMoniker": "zad4\\guid3.cpp",
+              "ToolTip": "C:\\Users\\sobal\\OtherCodingProjects\\KSR lab\\COM_labs\\COMlab_1\\4\\zad4\\zad4\\guid3.cpp",
+              "RelativeToolTip": "zad4\\guid3.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-03-04T01:26:11.269Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "klasa3.cpp",
+              "DocumentMoniker": "C:\\Users\\sobal\\OtherCodingProjects\\KSR lab\\COM_labs\\COMlab_1\\4\\zad4\\zad4\\klasa3.cpp",
+              "RelativeDocumentMoniker": "zad4\\klasa3.cpp",
+              "ToolTip": "C:\\Users\\sobal\\OtherCodingProjects\\KSR lab\\COM_labs\\COMlab_1\\4\\zad4\\zad4\\klasa3.cpp",
+              "RelativeToolTip": "zad4\\klasa3.cpp",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAACkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-03-04T01:25:53.174Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "klasa3.h",
+              "DocumentMoniker": "C:\\Users\\sobal\\OtherCodingProjects\\KSR lab\\COM_labs\\COMlab_1\\4\\zad4\\zad4\\klasa3.h",
+              "RelativeDocumentMoniker": "zad4\\klasa3.h",
+              "ToolTip": "C:\\Users\\sobal\\OtherCodingProjects\\KSR lab\\COM_labs\\COMlab_1\\4\\zad4\\zad4\\klasa3.h",
+              "RelativeToolTip": "zad4\\klasa3.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-03-04T01:25:51.233Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "dllmain3.cpp",
+              "DocumentMoniker": "C:\\Users\\sobal\\OtherCodingProjects\\KSR lab\\COM_labs\\COMlab_1\\4\\zad4\\zad4\\dllmain3.cpp",
+              "RelativeDocumentMoniker": "zad4\\dllmain3.cpp",
+              "ToolTip": "C:\\Users\\sobal\\OtherCodingProjects\\KSR lab\\COM_labs\\COMlab_1\\4\\zad4\\zad4\\dllmain3.cpp",
+              "RelativeToolTip": "zad4\\dllmain3.cpp",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAACsAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-03-04T01:25:32.305Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

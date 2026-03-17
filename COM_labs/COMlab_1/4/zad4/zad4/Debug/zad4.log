@@ -1,0 +1,8 @@
+﻿  dllmain3.cpp
+  fabryka3.cpp
+  guid3.cpp
+  klasa3.cpp
+  Generowanie kodu...
+     Trwa tworzenie biblioteki C:\Users\sobal\OtherCodingProjects\KSR lab\COM_labs\COMlab_1\4\zad4\Debug\zad4.lib i obiektu C:\Users\sobal\OtherCodingProjects\KSR lab\COM_labs\COMlab_1\4\zad4\Debug\zad4.exp
+zad4.exp : warning LNK4070: /OUT: dyrektywa klasa3.dll w pliku .EXP jest inna niż nazwa pliku wyjściowego „C:\Users\sobal\OtherCodingProjects\KSR lab\COM_labs\COMlab_1\4\zad4\Debug\zad4.dll”; dyrektywa została zignorowana
+  zad4.vcxproj -> C:\Users\sobal\OtherCodingProjects\KSR lab\COM_labs\COMlab_1\4\zad4\Debug\zad4.dll

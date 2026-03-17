@@ -1,0 +1,7 @@
+LIBRARY zda4.dll
+
+EXPORTS
+DllCanUnloadNow
+DllGetClassObject
+DllRegisterServer
+DllUnregisterServer
