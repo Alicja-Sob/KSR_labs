@@ -32,7 +32,7 @@ Zadania:
    - rej1.reg
    - unrej1.reg
 
-2. napisanie klienta w C#, x86 (późne wiązanie)	10%
+2. napisanie klienta w C#, x86 (późne wiązanie)			10%
    do COMa z pkt. 1
    Sprawdzić czy do metody Test przekazujemy string jako parametr
    pliki:
@@ -59,10 +59,10 @@ Zadania:
    vtestowanie: test.exe 2
    pliki:
    - klasa2.cs (do własnej implementacji)
-   - rej5.reg (w przypadku rejestrecji ręcznej)
+   - rej5.reg (w przypadku rejestracji ręcznej)
    - unrej5.reg
 
-6. implemnetacja COMa w C++ (klasac2.dll)		10%
+6. implementacja COMa w C++ (klasac2.dll)		10%
    klasę należy samodzielnie zarejestrować in-process
    pliki:
    - IKlasa2.h
@@ -77,8 +77,8 @@ Zadania:
    - rej6.reg
    - unrej6.reg
 
-7. implementacja aplikacji WPF wykorzystujęcej kontrolki ActiveX	10%
-   - wyświetlajanie pliku PDF
+7. implementacja aplikacji WPF wykorzystującej kontrolki ActiveX	10%
+   - wyświetlanie pliku PDF
    - odtwarzanie pliku WAV
    - otwieranie strony WWW 
 
@@ -93,14 +93,12 @@ Uwagi:
    (prawym przyciskiem myszy -> właściwości -> odblokuj)
 3. system jest 64-bitowy, dll-ki są 32-bitowe
 
-Po zakończeniu zadania proszę przesłać wszystkie wyżej wymienione pliki oraz pliki wszytkich projektów i solution (pliki .vcxproj i .sln).
+Po zakończeniu zadania proszę przesłać wszystkie wyżej wymienione pliki
+oraz pliki wszystkich projektów i solution (pliki .vcxproj i .sln).
 Proszę również dołączyć skompilowane pliki: klient2.exe, klient3.exe, klient4.exe, klasa2.dll, klasac.dll.
-
 Podstawą oceny są również screeny z działających wywołań plików test.exe (3 przypadki), klient2.exe, klient3.exe, klient4.exe.
-
 Proszę usunąć z folderów Debug i Release wszytkie pliki poza .exe, .dll, .tlb, .tlh i .tli
 Proszę również usunąć ukryty folder .vs.
-
 Pliki należy spakować do archiwum ZIP i wysłać na platformie e-nauczanie.
 
 
