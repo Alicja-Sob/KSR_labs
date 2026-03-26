@@ -4,8 +4,8 @@
 |:-----------:| :---------: |:------------------------------------------------------------:|:-------------:|:-----------:|
 | Lab 2       | COM         | klasa COM, serwer in-proc, reg-free                          | 04-03-2026    | 100/100     |
 | Lab 3       | COM         | serwer w pliku exe                                           | 11-03-2026    | 100/100     |
-| Lab 4       | COM         | COM w C#, GAC, C++ ↔ C#                                      | xx-03-2026    | xx/100      |
-| Lab 5       | WCF         | self-hosting , bindingi, metadane, wyjątki                   | xx-xx-2026    | xx/100      |
+| Lab 4       | COM         | COM w C#, GAC, C++ ↔ C#                                      | xx-03-2026    | 90/100      |
+| Lab 5       | WCF         | self-hosting , bindingi, metadane, wyjątki                   | xx-xx-2026    | 100/100      |
 | Lab 6       | WCF         | wołania, czas życia serwera, WCF service application, REST   | xx-xx-2026    | xx/100      |
 | Lab 7       | WCF         | REST, routing, publikacja i wyszukiwanie usługi              | xx-xx-2026    | xx/100      |
 | Lab 8       | RabbitMQ    |                                                              | xx-xx-2026    | xx/100      |
