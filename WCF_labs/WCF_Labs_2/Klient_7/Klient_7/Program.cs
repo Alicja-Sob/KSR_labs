@@ -21,7 +21,7 @@ namespace Klient_7
         {
             // ZADANIE 5 ---------------------------------------------------------
             var client5 = new ServiceReference1.Zadanie5Client();
-            Console.WriteLine(client5.ScalNapisy("zadanie 5", " zaliczone"));
+            Console.WriteLine(client5.ScalNapisy(client5.ScalNapisy("zadanie", " 5"), " zaliczone"));
             //Console.ReadKey();
 
             // ZADANIE 6 ---------------------------------------------------------

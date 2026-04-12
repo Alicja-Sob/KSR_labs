@@ -10,9 +10,9 @@ namespace Klient_1
 {
     public class Handler : ServiceReference2.IZadanie2Callback
     {
-        public void Zadanie([MessageParameter(Name = "zadanie2")] string zadanie2, int pkt, bool zaliczone)
+        public void Zadanie([MessageParameter(Name = "zadanie2")] string zadanie, int pkt, bool zaliczone)
         {
-            Console.WriteLine($"{zadanie2} pkt: {pkt} zaliczone: {zaliczone}");
+            Console.WriteLine($"{zadanie} pkt: {pkt} zaliczone: {zaliczone}");
         }
     }
 

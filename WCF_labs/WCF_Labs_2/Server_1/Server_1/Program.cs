@@ -64,8 +64,8 @@ namespace Serwer_1
 
             Console.ReadKey();
 
-            host3.Close();
-            host4.Close();
+      //      host3.Close();
+       //     host4.Close();
         }
     }
 }
