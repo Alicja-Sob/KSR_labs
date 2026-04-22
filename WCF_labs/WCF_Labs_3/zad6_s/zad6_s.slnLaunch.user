@@ -1,0 +1,57 @@
+[
+  {
+    "Name": "s1-r-k",
+    "Projects": [
+      {
+        "Path": "Service_6_1\\Service_6_1.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "Router_6\\Router_6.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "Klient_6\\Klient_6.csproj",
+        "Action": "Start"
+      }
+    ]
+  },
+  {
+    "Name": "s2-r-k",
+    "Projects": [
+      {
+        "Path": "Service_6_2\\Service_6_2.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "Router_6\\Router_6.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "Klient_6\\Klient_6.csproj",
+        "Action": "Start"
+      }
+    ]
+  },
+  {
+    "Name": "s1-s2-r-k",
+    "Projects": [
+      {
+        "Path": "Service_6_1\\Service_6_1.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "Service_6_2\\Service_6_2.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "Router_6\\Router_6.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "Klient_6\\Klient_6.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]
