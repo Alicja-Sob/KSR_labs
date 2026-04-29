@@ -9,8 +9,8 @@
 | Lab 6       | WCF         | wo³ania, czas ¿ycia serwera, WCF service application, REST   | 06-04-2026    | 100/100     |
 | Lab 7       | WCF         | REST, routing, publikacja i wyszukiwanie us³ugi              | 15-04-2026    | 100/100     |
 | Lab 8       | RabbitMQ    |                                                              | 22-04-2026    | 100/100     |
-| Lab 9       | MassTransit | wydawca/abonent, obs³uga wiadomo¶ci, wersjonowanie, nag³ówki | xx-xx-2026    | xx/100      |
-| Lab 10      | MassTransit | polecenia, komunikacja, wyj±tki, obserwatory, szyfrowanie    | xx-xx-2026    | xx/100      |
+| Lab 9       | MassTransit | wydawca/abonent, obs³uga wiadomosci, wersjonowanie, nag³owki | xx-xx-2026    | 100/100     |
+| Lab 10      | MassTransit | polecenia, komunikacja, wyjatki, obserwatory, szyfrowanie    | xx-xx-2026    | xx/100      |
 | Lab 11      | MassTransit | sagi                                                         | xx-xx-2026    | xx/100      |
 | Lab 12      | Azure       | WCF, tabele, BLOBy                                           | xx-xx-2026    | xx/100      |
 | Lab 13      | Azure       |  kolejki, worker                                             | xx-xx-2026    | xx/100      |

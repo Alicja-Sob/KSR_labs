@@ -1,0 +1,47 @@
+Zadanie proszę zrealizować w oparciu o .NET8+ i Generic Host.
+Każdy proces powinien na początku się
+przedstawić, czyli wypisać na konsolę kim
+jest, np. "nadawca", "odbiorca 2" itp.
+W celu poprawienia czytelności, aby odróżnić
+komendu wypisywane przez program a treść
+odebranych/wysłanych wiadomości, można użyć
+klasy ConsoleCol (dostępna na eNauczanie).
+Utworzenie szyny korzystającej z RabbitMq:
+
+builder.Services.AddMassTransit(x =>
+{
+    x.UsingRabbitMq((context, cfg) => {
+        cfg.Host(new Uri("rabbitmq://adres"), h => {
+            h.Username("user");
+            h.Password("password"); });
+        cfg.ReceiveEndpoint("nazwa-kolejki", ec => { });
+    }); });
+
+1. wydawca (W)  20%
+publikuje 10 wiadomości ze zmieniającą się treścią
+
+2. odbiorca (A) 15%
+wypisuje na konsolę treść odebranych wiadomości
+
+3. nagłówki 10%
+ustawienie w nadawcy i wypisanie w odbiorcy dwóch różnych nagłówków (w każdej wiadomości)
+
+4. odbiorca (B) 15%
+wypisuje na konsolę treść odebranych wiadomości; wyświetla także liczbę odebranych wiadomości (licznik powinien
+być polem klasy obsługującej komunikaty i nie może być statyczny)
+
+5. odbiorca (C) i drugi typ wiadomości 20%
+wydawca publikuje dodatkowo wiadomości drugiego typu; odbiorca C wyświetla ich treść na konsolę; wiadomości są interfejsami
+
+6. wersjonowanie 20%
+wydawca publikuje trzy typy wiadomości; trzeci typ dziedziczy po pierwszych
+dwóch (z pkt. 1 i 5.); wiadomości te odbiera odbiorca B
+
+Uwagi:
+Po zakończeniu zadania proszę przesłać wszystkie pliki kodu, konfiguracyjne (.cs, .config)
+oraz pliki wszytkich projektów i solution (pliki .csproj i .sln).
+Proszę również dołączyć skompilowane pliki: exe oraz dll.
+Podstawą oceny są również screeny z działających programów.
+Proszę opróżnić foldery Debug i Release zostawiając jedynie pliki .exe i .dll.
+Proszę również usunąć folder packages oraz ukryty folder .vs.
+Pliki należy spakować do archiwum ZIP i wysłać na platformie e-nauczanie.
