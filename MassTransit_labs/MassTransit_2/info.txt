@@ -1,0 +1,69 @@
+Zadanie proszę zrealizować w oparciu o .NET8+ i Generic Host.
+Każdy proces powinien na początku się przedstawić, czyli wypisać na konsolę kim
+jest, np. "nadawca", "odbiorca 2" itp. W celu poprawienia czytelności, aby odróżnić
+komendu wypisywane przez program a treść odebranych/wysłanych wiadomości, można użyć
+klasy ConsoleCol (dostępna na eNauczanie).
+
+Utworzenie szyny korzystającej z RabbitMq:  
+builder.Services.AddMassTransit(x =>
+{
+    x.UsingRabbitMq((context, cfg) => {
+        cfg.Host(new Uri("rabbitmq://adres"), h => {
+            h.Username("user");
+            h.Password("password"); });
+        cfg.ReceiveEndpoint("nazwa-kolejki", ec => { });
+    }); });  
+
+W, K, A, B to osobne procesy  
+
+1. wydawca wiadomości (W)                10%
+- publikuje co sekundę wiadomości typu Publ
+  z kolejnymi numerami (1, 2, 3, ...)
+- reaguje na polecenia kontrolera
+
+2. kontroler generatora    (K)                15%
+- po naciśnięciu klawisza s wysyła polecenie uruchomienia
+  generatora (polecenie Ustaw { dziala = true } )
+- po naciśnięciu klawisza t wysyła polecenie zatrzymania
+  generatora (polecenie Ustaw { dziala = false } )
+
+3. dwoje abonentów (A i B)                20%
+- odbierają wiadomości od W i wypisują na konsolę
+  ich zawartość
+- A odpowiada na wiadomości o numerach podzielnych przez 2
+  wiadomościami typu OdpA z polem kto = "abonent A"
+- B odpowiada na wiadomości o numerach podzielnych przez 3
+  wiadomościami typu OdpB z polem kto = "abonent B"
+- W wypisuje na konsolę treść odpowiedzi
+
+4. wyjątki                        25%
+- obsługa odpowiedzi w wydawcy (W)
+  rzuca wyjątek z prawdopodobienstwem 1/2 
+- abonenci są informowani, gdy obsługa ich odpowiedzi
+  wywołała wyjątek (wypisują informację o tym fakcie
+  na konsolę)
+- wydawca w przypadku wyjątku próbuje ponownie obsłużyć
+  wiadomość (maksymalnie 3 razy)
+
+5. obserwatory wiadomości                20%
+- wydawca po naciśnięciu klawisza s wypisuje
+  statystyki odebranych wiadomości:
+  - liczba prób obsłużenia komunikatów każdego typu
+  - liczba pomyślnie obsłużonych komunikatów każdego typu
+  - liczba opublikowanych komunikatów typu
+
+6. szyfrowanie                        10%
+- komunikacja między K i W jest szyfrowana
+  współdzielonym kluczem (numer indeksu powtórzony
+  dostatecznie wiele razy);
+- wektor inicjalizacyjny powinien być inny
+  w każdej wiadomości  
+
+Uwagi:
+Po zakończeniu zadania proszę przesłać wszystkie pliki kodu, konfiguracyjne (.cs, .config)
+oraz pliki wszytkich projektów i solution (pliki .csproj i .sln).
+Proszę również dołączyć skompilowane pliki: exe oraz dll.
+Podstawą oceny są również screeny z działających programów.
+Proszę opróżnić foldery Debug i Release zostawiając jedynie pliki .exe i .dll.
+Proszę również usunąć folder packages oraz ukryty folder .vs.
+Pliki należy spakować do archiwum ZIP i wysłać na platformie e-nauczanie.  
