@@ -1,0 +1,97 @@
+Zadanie proszę zrealizować w oparciu o .NET8+ i Generic Host.
+Każdy proces powinien na początku się przedstawić, czyli wypisać na konsolę kim jest, np. "magazyn", "klient A" itp.
+W celu poprawienia czytelności, aby odróżnić komendu wypisywane przez program a treść
+odebranych/wysłanych wiadomości, można użyć klasy ConsoleCol (dostępna na eNauczanie).
+Utworzenie szyny korzystającej z RabbitMq:
+
+builder.Services.AddMassTransit(x =>
+{
+    x.UsingRabbitMq((context, cfg) => {
+        cfg.Host(new Uri("rabbitmq://adres"), h => {
+            h.Username("user");
+            h.Password("password"); });
+        cfg.ReceiveEndpoint("nazwa-kolejki", ec => { });
+    }); });
+
+===============================================================================================================
+===============================================================================================================
+
+procesy:
+ - sklep [shop]
+ - klient A [client A]
+ - klient B [client B]
+ - magazyn [warehouse]
+
+wiadomości, można dodawać dodatkowe pola (podane nazwy należy przetłumaczyć na język angielski):
+ - StartZamówienia { int ilosc; }     klient -> sklep
+ - Potwierdzenie            klient -> sklep
+ - BrakPotwierdzenia            klient -> sklep
+
+ - PytanieoPotwierdzenie { int ilosc; }    sklep -> klient
+ - AkceptacjaZamówienia { int ilosc; }    sklep -> klient
+ - OdrzucenieZamówienia { int ilosc; }    sklep -> klient
+
+ - PytanieoWolne { int ilosc; }        sklep -> magazyn
+ 
+ - OdpowiedzWolne            magazyn -> sklep
+ - OdpowiedzWolneNegatywna        magazyn -> sklep
+
+===============================================================================================================
+===============================================================================================================
+
+proces sklep                         (40% + 10%(timeout))
+          - przechowuje i przetwarza sagi opisujące proces zamówienia
+          - wysyła do magazynu pytanie o potwierdzenie zamówienia (wraz z ilością)
+          - wysyła do klienta pytanie o potwierdzenie zamówienia (wraz z ilością)
+          - odbiera potwierdzenia od magazynu
+          - odbiera potwierdzenia od klienta
+          - kolejność odbierania potwierdzen nie powinna mieć znaczenia
+          - jeżeli oboje potwierdzą transakcja konczy się sukcesem
+            i wysyłane jest do klienta potwierdzenie; w przeciwnym wypadku
+            wysyłany jest do klienta brak potwierdzenia
+            
+          - timeout: zamówienie niepotwierdzone w przeciągu 10 sekund jest anulowane
+
+procesy klient A i klient B                    (20%)
+          - wysyła zamówienie, zamówienie zawiera ilość (liczba pobierana z klawiatury),
+          - odbiera pytania o potwierdzenia od sklepu i potwierdza lub nie w zależności od naciśniętego klawisza
+            (brak potwierdzenia też jest sygnalizowany wiadomością)
+            
+          - odbiera wiadomości potwierdzające (lub niepotwierdzające) zakup od sklepu
+
+proces magazyn                            (30%):
+          - przechowuje stan magazynu (liczba całkowita, początkowo 0);
+            stan dzieli się na jednostki wolne i zarezerwowane
+          - wyświetla na konsoli stan magazynu (wolne i zarezerwowane osobno) [aviable and reserved?]
+          - wpisanie liczby zwiększa stan magazynu (wolne) o podaną wartość
+          - odbiera pytania o potwierdzenia od sklepu i potwierdza lub nie
+            (brak potwierdzenia też jest sygnalizowany wiadomością);
+            odpowiedź jest twierdząca, jeżeli liczba wolnych jednostek jest
+            co najmniej taka jak ilość w zamówieniu; w przeciwnym wypadku
+            odpowiedź jest negatywna;
+            potwierdzenie pytania rezerwuje ilość jednostek
+            (przenosi je z wolnych na zarezerwowane)
+          - akceptacja zamówienia usuwa zarezerwowane jednostki
+          - odrzucenie zamówienia przenosi zarezerwowane jednostki do wolnych
+
+===============================================================================================================
+===============================================================================================================
+
+                              magazyn
+                                 A
+                                 |
+                                 | POTW?->TAK/NIE
+klient1 -------------            |
+A A A                \           V        1 lub 2 niepotwierdzone
+| | |                 -------> sklep -----------------------------+
+| | |                /           A \                              |
+| | |   klient2 -----            |  \  2 potwierdzenia            |
+| | |   A A A                    |   --------------------+        |
+| | |   | | |                    |                       |        |
+| | |   | | |   POTW?->TAK/NIE   |                       |        |
+| | +---+-+-+--------------------+                       |        |
+| |     | |                               SUKCES         |        |
+| +-----+-+----------------------------------------------+        |
+|       |                                                         |
+|       |                               PORAŻKA                   |
++-------+---------------------------------------------------------+
