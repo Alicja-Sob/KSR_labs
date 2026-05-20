@@ -35,6 +35,7 @@ builder.Services.AddHostedService<BackgroundService_WH>();
 
 var host = builder.Build();
 
-Custom_ConsoleCol.ConsoleWrite("[INFO] BackgroundService Running", ConsoleColor.Magenta);
+Custom_ConsoleCol.ConsoleWrite("[INFO] BackgroundService Running", ConsoleColor.Red);
+Custom_ConsoleCol.ConsoleWrite($"[INFO] WHENEVER YOU WISH TO INCREASE THE STOCK, SIMPLY TYPE A DESIRED NUMBER", ConsoleColor.Red);
 
 await host.RunAsync();

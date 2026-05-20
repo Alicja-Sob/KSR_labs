@@ -8,53 +8,52 @@ using System.Text;
 using System.Threading.Tasks;
 public class Consumer_WH : IConsumer<AskAviablility>, IConsumer<AcceptOrder>, IConsumer<RejectOrder>
 {
-    
-    
-private static readonly object LockObj = new();
-    private static int _free = 0;
+    private static readonly object LockObj = new();
+    private static int _aviable = 0;
     private static int _reserved = 0;
     private static readonly Dictionary<Guid, int> Reservations = new();
-    public Task Consume(ConsumeContext<AskAviablility> context)
+ 
+    public Task Consume(ConsumeContext<AskAviablility> ctx)
     {
         lock (LockObj)
         {
             PrintState();
-            if (_free >= context.Message.amount)
+            if (_aviable >= ctx.Message.amount)
             {
-                _free -= context.Message.amount;
-                _reserved += context.Message.amount;
-                Reservations[context.Message.CorrelationId] =
-                context.Message.amount;
-                Console.WriteLine($"[WAREHOUSE] Reserved {context.Message.amount}");
-            return context.Publish(new AnswerAviable(context.Message.CorrelationId));
+                _aviable -= ctx.Message.amount;
+                _reserved += ctx.Message.amount;
+                Reservations[ctx.Message.CorrelationId] = ctx.Message.amount;
+                Custom_ConsoleCol.ConsoleWrite($"[ORDER] Reserved {ctx.Message.amount} stuff for order {ctx.Message.amount} ", ConsoleColor.Red);
+                return ctx.Publish(new AnswerAviable(ctx.Message.CorrelationId));
 
             }
         }
-        Console.WriteLine("[WAREHOUSE] Not enough stock");
-        return context.Publish(new AnswerNotAviable(context.Message.CorrelationId));
+        Custom_ConsoleCol.ConsoleWrite($"[ORDER] NOT enough stuff for order {ctx.Message.amount}", ConsoleColor.Red);
+        return ctx.Publish(new AnswerNotAviable(ctx.Message.CorrelationId));
     }
-    public Task Consume(ConsumeContext<AcceptOrder> context)
+    public Task Consume(ConsumeContext<AcceptOrder> ctx)
     {
         lock (LockObj)
         {
-            if (Reservations.Remove(context.Message.CorrelationId, out var
-            qty))
+            if (Reservations.Remove(ctx.Message.CorrelationId, out var qty))
             {
                 _reserved -= qty;
+                Custom_ConsoleCol.ConsoleWrite($"[ORDER] Order {ctx.Message.amount} accepted for fullfilment :D", ConsoleColor.Red);
             }
             PrintState();
         }
         return Task.CompletedTask;
     }
-    public Task Consume(ConsumeContext<RejectOrder> context)
+    public Task Consume(ConsumeContext<RejectOrder> ctx)
     {
         lock (LockObj)
         {
-            if (Reservations.Remove(context.Message.CorrelationId, out var
+            if (Reservations.Remove(ctx.Message.CorrelationId, out var
             qty))
             {
+                Custom_ConsoleCol.ConsoleWrite($"[ORDER] Order {ctx.Message.amount} failed :(", ConsoleColor.Red);
                 _reserved -= qty;
-                _free += qty;
+                _aviable += qty;
             }
             PrintState();
         }
@@ -64,37 +63,15 @@ private static readonly object LockObj = new();
     {
         lock (LockObj)
         {
-            _free += amount;
+            Custom_ConsoleCol.ConsoleWrite($"[INFO] Added {amount} stuff to our stock :)", ConsoleColor.Red);
+            _aviable += amount;
             PrintState();
         }
     }
     private static void PrintState()
     {
-        Console.WriteLine($"[WAREHOUSE] Free={_free}, Reserved={_reserved}");
+        Custom_ConsoleCol.ConsoleWrite($"[INFO] Warehouse stock\n\t Aviable stuff: {_aviable}\n\t Reserved stuff: {_reserved}", ConsoleColor.Red);
     }
 }
-        /*public async Task Consume(ConsumeContext<AskAviablility> ctx)
-        {
-            Custom_ConsoleCol.ConsoleWrite($"[SHOP] Request for {ctx.Message.amount} stuff for order {ctx.Message.CorrelationId}", ConsoleColor.Red);
-            if (BackgroundService_WH._warehouse_state.Aviable_items >= ctx.Message.amount)
-            {
-                Custom_ConsoleCol.ConsoleWrite($"[REQ] Stuff for order {ctx.Message.CorrelationId} reserved", ConsoleColor.Red);
-                await ctx.Publish(new AnswerAviable(ctx.Message.CorrelationId));
-            }
-            Custom_ConsoleCol.ConsoleWrite($"[REQ] Stuff for order {ctx.Message.CorrelationId} NOT aviable :(", ConsoleColor.Red);
-            await ctx.Publish(new AnswerNotAviable(ctx.Message.CorrelationId));
-        }
-        public async Task Consume(ConsumeContext<AcceptOrder> ctx)
-        {
-            BackgroundService_WH._warehouse_state.Aviable_items -= ctx.Message.amount;
-            BackgroundService_WH._warehouse_state.Reserved_items += ctx.Message.amount;
-            Custom_ConsoleCol.ConsoleWrite($"[SHOP] Client confirmed the order {ctx.Message.CorrelationId} :D", ConsoleColor.Red);
-            //return Task.CompletedTask;
-        }
-        public async Task Consume(ConsumeContext<RejectOrder> ctx)
-        {
-            Custom_ConsoleCol.ConsoleWrite($"[SHOP] Client canceled the order {ctx.Message.CorrelationId} :/", ConsoleColor.Red);
-            //return Task.CompletedTask;
-        }*/
 
     

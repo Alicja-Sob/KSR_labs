@@ -64,7 +64,7 @@ namespace Shop
                 When(OrderStart)
                     .Then(ctx =>
                     {
-                        Custom_ConsoleCol.ConsoleWrite($"[DEBUG] Starting order {ctx.Message.CorrelationId}", ConsoleColor.Yellow);
+                        //Custom_ConsoleCol.ConsoleWrite($"[DEBUG] Starting order {ctx.Message.CorrelationId}", ConsoleColor.Yellow);
                         ctx.Saga.amount = ctx.Message.amount;
                         ctx.Saga.client = ctx.Message.client_letter;
 
@@ -95,7 +95,7 @@ namespace Shop
                     .Send(new Uri("queue:wh_queue"), ctx =>
                         new AskAviablility(ctx.Saga.CorrelationId, ctx.Saga.amount))
                     .TransitionTo(WaitingForResponses)
-                    .Then (ctx => Custom_ConsoleCol.ConsoleWrite($"[DEBUG] Transfering to waiting for response for order {ctx.Message.CorrelationId}", ConsoleColor.Yellow))
+                    //.Then (ctx => Custom_ConsoleCol.ConsoleWrite($"[DEBUG] Transfering to waiting for response for order {ctx.Message.CorrelationId}", ConsoleColor.Yellow))
             );
 
 

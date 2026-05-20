@@ -16,9 +16,7 @@ public class BackgroundService_CA : BackgroundService
 
         while (!stoppingToken.IsCancellationRequested)
         {
-            System.Threading.Thread.Sleep(1000); //TODO FIX THIS - DOESNT WORK PROPERLY
-            Custom_ConsoleCol.ConsoleWrite("[INFO] Enter order amount", ConsoleColor.Green);
-
+           
             var input = Console.ReadLine();
             var id = NewId.NextGuid();
 
