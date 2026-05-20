@@ -39,6 +39,6 @@ var host = builder.Build();
 Custom_ConsoleCol.ConsoleWrite("[INFO] BackgroundService Running", ConsoleColor.Cyan);
 
 Custom_ConsoleCol.ConsoleWrite("[INFO] WHENEVER YOU WISH TO PLACE ANOTHER ORDER SIMPLY TYPE A NUMBER", ConsoleColor.Cyan);
-Custom_ConsoleCol.ConsoleWrite("       REMEBER TO CONFIRM / DENY THE PREVIOUS ORDER BEFORE PLACING ANOTHER!", ConsoleColor.Cyan);
+Custom_ConsoleCol.ConsoleWrite("       REMEBER TO -ALWAYS- CONFIRM / DENY THE PREVIOUS ORDER BEFORE PLACING ANOTHER!", ConsoleColor.Cyan);
 
 await host.RunAsync();

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Client_B
 {
+    
     internal class CB_consumer : IConsumer<AskConfirmation>, IConsumer<AcceptOrder>, IConsumer<RejectOrder>
     {
         public Task Consume(ConsumeContext<AskConfirmation> ctx)  //shop asking if we want to confirm the order

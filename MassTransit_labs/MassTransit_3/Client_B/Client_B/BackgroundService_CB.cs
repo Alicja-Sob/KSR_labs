@@ -16,7 +16,6 @@ public class BackgroundService_CB : BackgroundService
 
         while (!stoppingToken.IsCancellationRequested)
         {
-
             var input = Console.ReadLine();
             var id = NewId.NextGuid();
 
