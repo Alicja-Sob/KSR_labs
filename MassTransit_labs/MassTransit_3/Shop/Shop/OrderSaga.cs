@@ -106,7 +106,15 @@ namespace Shop
                         ctx.Saga.clientConfirmed = false;
                         Custom_ConsoleCol.ConsoleWrite("[INFO] Client canceled the order", ctx.Saga.messageColor);
                     })
-                    .Publish(ctx => new RejectOrder(ctx.Saga.CorrelationId, ctx.Saga.amount))
+                    .Send(ctx =>
+                    {
+                        var queue = ctx.Saga.client == "A"
+                            ? new Uri("queue:ca_queue")
+                            : new Uri("queue:cb_queue");
+
+                        return queue;
+                    }, ctx => new RejectOrder(ctx.Saga.CorrelationId, ctx.Saga.amount))
+                    .Send(new Uri("queue:wh_queue"), ctx => new RejectOrder(ctx.Saga.CorrelationId, ctx.Saga.amount))
                     .Finalize(),
 
                 When(ClientConfirmation)
@@ -116,9 +124,25 @@ namespace Shop
                     })
                     .If(ctx => ctx.Saga.WareHouseConfirmed,
                         x => x
-                            .Publish(ctx => new AcceptOrder(ctx.Saga.CorrelationId, ctx.Saga.amount))
+                            .Send(ctx =>
+                            {
+                                var queue = ctx.Saga.client == "A"
+                                    ? new Uri("queue:ca_queue")
+                                    : new Uri("queue:cb_queue");
+
+                                return queue;
+                            },
+                            ctx => new AcceptOrder(ctx.Saga.CorrelationId, ctx.Saga.amount))
+                            .Send(new Uri("queue:wh_queue"),
+                                ctx => new AcceptOrder(ctx.Saga.CorrelationId, ctx.Saga.amount))
                             .Finalize()
-                    ),
+                    )
+                    .Then(ctx =>
+                    {
+                        Custom_ConsoleCol.ConsoleWrite(
+                            $"[INFO] Order {ctx.Saga.CorrelationId} accepted for realization :D",
+                            ctx.Saga.messageColor);
+                    }),
 
                 When(WarehouseOk)
                     .Then(ctx => {
@@ -127,16 +151,41 @@ namespace Shop
                     })
                     .If(ctx => ctx.Saga.clientConfirmed,
                         x => x
-                            .Publish(ctx => new AcceptOrder(ctx.Saga.CorrelationId, ctx.Saga.amount))
+                            .Send(ctx =>
+                            {
+                                var queue = ctx.Saga.client == "A"
+                                    ? new Uri("queue:ca_queue")
+                                    : new Uri("queue:cb_queue");
+
+                                return queue;
+                            },
+                            ctx => new AcceptOrder(ctx.Saga.CorrelationId, ctx.Saga.amount))
+                            .Send(new Uri("queue:wh_queue"),
+                                ctx => new AcceptOrder(ctx.Saga.CorrelationId, ctx.Saga.amount))
                             .Finalize()
-                    ),
+                    )
+                    .Then(ctx =>
+                    {
+                        Custom_ConsoleCol.ConsoleWrite(
+                            $"[INFO] Order {ctx.Saga.CorrelationId} accepted for realization :D",
+                            ctx.Saga.messageColor);
+                    }),
 
                 When(WarehouseNo)
                     .Then(ctx => {
                         ctx.Saga.WareHouseConfirmed = false;
                         Custom_ConsoleCol.ConsoleWrite("[INFO] Sufficient stock not aviable in warehouse", ctx.Saga.messageColor);
                     })
-                    .Publish(ctx => new RejectOrder(ctx.Saga.CorrelationId, ctx.Saga.amount))
+
+                    .Send(ctx =>
+                    {
+                        var queue = ctx.Saga.client == "A"
+                            ? new Uri("queue:ca_queue")
+                            : new Uri("queue:cb_queue");
+
+                        return queue;
+                    }, ctx => new RejectOrder(ctx.Saga.CorrelationId, ctx.Saga.amount))
+                    .Send(new Uri("queue:wh_queue"), ctx => new RejectOrder(ctx.Saga.CorrelationId, ctx.Saga.amount))
                     .Finalize()
             );
 

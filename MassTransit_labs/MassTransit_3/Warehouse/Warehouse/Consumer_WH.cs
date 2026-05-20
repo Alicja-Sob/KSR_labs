@@ -17,16 +17,17 @@ public class Consumer_WH : IConsumer<AskAviablility>, IConsumer<AcceptOrder>, IC
     {
         lock (LockObj)
         {
-            PrintState();
             if (_aviable >= ctx.Message.amount)
             {
                 _aviable -= ctx.Message.amount;
                 _reserved += ctx.Message.amount;
                 Reservations[ctx.Message.CorrelationId] = ctx.Message.amount;
-                Custom_ConsoleCol.ConsoleWrite($"[ORDER] Reserved {ctx.Message.amount} stuff for order {ctx.Message.amount} ", ConsoleColor.Red);
+                Custom_ConsoleCol.ConsoleWrite($"[ORDER] Reserved {ctx.Message.amount} stuff for order {ctx.Message.CorrelationId} ", ConsoleColor.Red);
+                PrintState();
                 return ctx.Publish(new AnswerAviable(ctx.Message.CorrelationId));
 
             }
+
         }
         Custom_ConsoleCol.ConsoleWrite($"[ORDER] NOT enough stuff for order {ctx.Message.amount}", ConsoleColor.Red);
         return ctx.Publish(new AnswerNotAviable(ctx.Message.CorrelationId));
