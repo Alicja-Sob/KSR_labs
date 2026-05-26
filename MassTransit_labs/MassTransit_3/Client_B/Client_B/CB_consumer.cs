@@ -24,7 +24,7 @@ namespace Client_B
         public Task Consume(ConsumeContext<RejectOrder> ctx)  //the order was no fulfilled for one reason or another
         {
             if (!Console.KeyAvailable)
-                Thread.Sleep(500);
+                Thread.Sleep(1000);
             Custom_ConsoleCol.ConsoleWrite($"[ORDER] Order {ctx.Message.CorrelationId}  failed :[", ConsoleColor.Cyan);
             return Task.CompletedTask;
         }

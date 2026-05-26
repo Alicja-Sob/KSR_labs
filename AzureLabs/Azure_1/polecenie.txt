@@ -1,0 +1,55 @@
+Zadanie proszê zrealizowaæ w oparciu o wspierane wersje bibliotek:
+- Azure.Core
+- Azure.Data.Tables
+- Azure.Storage.Blobs
+- Azure.Storage.Common
+
+Proszê nie wykorzystywaæ przestarza³ych ju¿ bibliotek:
+- Microsoft.WindowsAzure.Storage
+- Microsoft.WindowsAzure.ServiceRuntime
+- Microsoft.WindowsAzure.Diagnostics
+- Microsoft.OData.Edm
+
+------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------
+
+Nale¿y przygotowaæ aplikacjê ASP.NET Core Web API (wykorzystuj±c± kontrolery i wstrzykiwanie zale¿no¶ci) oraz uruchomiæ i 
+przetestowaæ j± z wykorzystaniem lokalnego emulatora Azurite.  Us³uga musi wystawiaæ dokumentacjê interfejsu testowego 
+(Swagger lub Scalar) i implementowaæ nastêpuj±ce punkty koñcowe (endpoints):
+
+1. Rejestracja u¿ytkownika [POST] /api/users/register ? 20%
+
+Dzia³anie: Tworzy nowego u¿ytkownika w bazie NoSQL. Dane (login i has³o) powinny byæ zapisywane w Azure Table Storage.
+ Klucze tabeli: Zaprojektuj odpowiednio PartitionKey oraz RowKey dla encji u¿ytkownika.
+
+2. Logowanie [POST] /api/auth/login ? 20%
+
+Dzia³anie: Sprawdza w Table Storage, czy u¿ytkownik o podanym loginie istnieje i czy wprowadzone has³o jest poprawne.
+Wynik: Je¿eli dane s± poprawne, serwer generuje nowy unikalny identyfikator sesji (Guid.NewGuid()), 
+zapisuje tê sesjê w osobnej tabeli (powtarzaj±c operacjê zapisu dla sesji w Table Storage) i zwraca ten identyfikator
+(token sesji) w formacie JSON
+
+3. Wylogowanie [DELETE] /api/auth/logout/{login} ? 10%
+Dzia³anie: Usuwa aktywn± sesjê dla danego u¿ytkownika z tabeli sesji w Table Storage.
+
+4. Zapisanie pliku [POST] /api/files ? 30%
+
+Dzia³anie: Tworzy plik w Azure Blob Storage (w dedykowanym kontenerze) o podanej nazwie i zawarto¶ci tekstowej (string).
+Zabezpieczenie: Operacja mo¿e zostaæ wykonana wy³±cznie wtedy, gdy przes³any w ¿±daniu identyfikator sesji jest poprawny i 
+nale¿y do zalogowanego u¿ytkownika (wymaga wcze¶niejszej walidacji identyfikatora w Table Storage).
+
+5. Odczytanie pliku [GET] /api/files/{name} ? 20%
+
+Dzia³anie: Pobiera zawarto¶æ tekstow± wskazanego pliku (BLOB) z magazynu danych chmurowych i zwraca j± jako ci±g znaków (string).
+Zabezpieczenie: Podobnie jak w przypadku zapisu, operacja wymaga przes³ania poprawnego i aktywnego identyfikatora sesji 
+powi±zanego z u¿ytkownikiem.
+
+------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------
+
+Uwagi:
+
+Obiekty TableServiceClient oraz BlobServiceClient powinny byæ pobierane z systemu wstrzykiwania zale¿no¶ci (DI) za pomoc± 
+konfiguracji AddAzureClients w pliku Program.cs.
+
+Connection string konfigurujemy w appsettings.Development.json jako "AzureStorage": "UseDevelopmentStorage=true".
