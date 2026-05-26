@@ -52,19 +52,19 @@
           "dependencies": {
             "Azure.Core": {
               "target": "Package",
-              "version": "[1.56.0, )"
+              "version": "[1.44.1, )"
             },
             "Azure.Data.Tables": {
               "target": "Package",
-              "version": "[12.11.0, )"
+              "version": "[12.9.1, )"
             },
             "Azure.Storage.Blobs": {
               "target": "Package",
-              "version": "[12.28.0, )"
+              "version": "[12.22.2, )"
             },
             "Azure.Storage.Common": {
               "target": "Package",
-              "version": "[12.27.0, )"
+              "version": "[12.21.1, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

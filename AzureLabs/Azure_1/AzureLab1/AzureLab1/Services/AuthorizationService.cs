@@ -7,6 +7,7 @@ public interface IAuthorizationService
 {
     Task<Guid?> LoginAsync(string login, string password);
     Task<bool> LogoutAsync(string login);
+    Task<bool> ValidateSessionAsync(string login, string sessionId);
 }
 
 public class AuthorizationService : IAuthorizationService
@@ -71,6 +72,27 @@ public class AuthorizationService : IAuthorizationService
             return true;
         }
         catch (RequestFailedException)
+        {
+            return false;
+        }
+    }
+    public async Task<bool> ValidateSessionAsync(string login, string sessionId)
+    {
+        try
+        {
+            var response = await _sessionsTable.GetEntityIfExistsAsync<SessionEntity>(
+                "SESSION",
+                login
+            );
+
+            if (!response.HasValue)
+                return false;
+
+            var session = response.Value;
+
+            return session.SessionId.ToString() == sessionId;
+        }
+        catch
         {
             return false;
         }

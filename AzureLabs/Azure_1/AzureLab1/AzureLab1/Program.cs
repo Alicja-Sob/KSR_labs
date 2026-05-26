@@ -1,5 +1,6 @@
-using Azure.Data.Tables;
 using Azure.Core;
+using Azure.Data.Tables;
+using Azure.Storage.Blobs;
 using AzureTableAuthApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,9 +17,16 @@ builder.Services.AddSingleton(_ =>
     return new TableServiceClient(connectionString);
 });
 
+builder.Services.AddSingleton(_ =>
+{
+    var connectionString = builder.Configuration["AzureStorage"];
+    return new BlobServiceClient(connectionString);
+});
+
 //SERVICES ---------------------------
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAuthorizationService, AuthorizationService>();
+builder.Services.AddScoped<IFileService, FileService>();
 
 var app = builder.Build();
 
