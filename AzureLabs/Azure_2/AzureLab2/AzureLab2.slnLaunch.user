@@ -1,0 +1,19 @@
+[
+  {
+    "Name": "az-mon-htt",
+    "Projects": [
+      {
+        "Path": "AzureLab2\\AzureLab2.csproj",
+        "Action": "StartWithoutDebugging"
+      },
+      {
+        "Path": "QueueMonitorBWS\\QueueMonitorBWS.csproj",
+        "Action": "StartWithoutDebugging"
+      },
+      {
+        "Path": "HttpClient_az2\\HttpClient_az2.csproj",
+        "Action": "StartWithoutDebugging"
+      }
+    ]
+  }
+]

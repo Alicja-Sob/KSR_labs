@@ -4,7 +4,12 @@ Zadanie proszê zrealizowaæ w oparciu o wspierane wersje bibliotek:
 - Azure.Storage.Blobs
 - Azure.Storage.Common
 
-Proszê nie wykorzystywaæ przestarza³ych bibliotek (np. Microsoft.WindowsAzure.*). Ca³o¶æ infrastruktury (serwer API oraz proces w tle) powinna korzystaæ ze wspólnego kontenera wstrzykiwania zale¿no¶ci (DI) oraz konfiguracji opartej na pliku appsettings.Development.json.
+Proszê nie wykorzystywaæ przestarza³ych bibliotek (np. Microsoft.WindowsAzure.*). 
+Ca³o¶æ infrastruktury (serwer API oraz proces w tle) powinna korzystaæ ze wspólnego kontenera wstrzykiwania zale¿no¶ci (DI) 
+oraz konfiguracji opartej na pliku appsettings.Development.json.
+
+------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------
 
 Wymagania funkcjonalne i punktacja (Suma: 100%)
 
@@ -12,37 +17,63 @@ Wymagania funkcjonalne i punktacja (Suma: 100%)
  - Dzia³anie: Przyjmuje w ciele ¿±dania (lub parametrach) nazwê pliku oraz jego surow± tre¶æ tekstow±.
  - Operacja:
    A. Zapisuje przekazan± tre¶æ do pierwszego kontenera BLOB (kontener wej¶ciowy, np. original-files).
-   B. Tworzy komunikat zawieraj±cy informacjê o nowym pliku (np. strukturê JSON z nazw± bloba) i wysy³a go do chmurowej kolejki, informuj±c proces w tle o nowym zadaniu. 
+   B. Tworzy komunikat zawieraj±cy informacjê o nowym pliku (np. strukturê JSON z nazw± bloba) i wysy³a go do chmurowej kolejki, 
+      informuj±c proces w tle o nowym zadaniu. 
 
 2. Proces roboczy w tle (Worker Service) ? 30%
  - Dzia³anie: Us³uga dziedzicz±ca po BackgroundService uruchamia asynchroniczn± pêtlê, która stale monitoruje kolejkê zadañ. 
  - Operacje w pêtli:
    A. Odbiera komunikat z kolejki. 
    B. Pobiera odpowiadaj±cy mu plik BLOB z kontenera wej¶ciowego.
-   C. Koduje pobran± zawarto¶æ autorskim algorytmem ROT13 (nale¿y zaimplementowaæ go samodzielnie, ignoruj±c polskie znaki) https://pl.wikipedia.org/wiki/ROT13.
-   D. Logika b³êdów i ponowieñ (Retry): Proces kodowania z prawdopodobieñstwem 1/3 rzuca unikalny, niesformatowany wyj±tek (symulacja awarii wêz³a). Us³uga robocza celowo dopuszcza do sytuacji awaryjnej i przerywa przetwarzanie bie¿±cej iteracji (wyj±tek nie jest wy³apywany wewnêtrznie przez logikê zapisu). Czas ponownej widoczno¶ci wiadomo¶ci w kolejce nale¿y jawnie ustawiæ na 3 sekundy (visibilityTimeout: TimeSpan.FromSeconds(3)). Brak jawnego usuniêcia wiadomo¶ci z kolejki sprawia, ¿e po up³ywie czasu niewidoczno¶ci (visibility timeout) komunikat automatycznie powraca do kolejki, a Worker podejmuje kolejn± próbê jego przetworzenia. 
-   E. W przypadku sukcesu (gdy wyj±tek nie wyst±pi), zakodowana tre¶æ jest zapisywana jako nowy BLOB w drugim kontenerze (kontener wyj¶ciowy, np. encoded-files), a komunikat jest bezpowrotnie usuwany z kolejki za pomoc± tokenu PopReceipt. 
+   C. Koduje pobran± zawarto¶æ autorskim algorytmem ROT13 (nale¿y zaimplementowaæ go samodzielnie, ignoruj±c polskie znaki) 
+      https://pl.wikipedia.org/wiki/ROT13.
+   D. Logika b³êdów i ponowieñ (Retry): Proces kodowania z prawdopodobieñstwem 1/3 rzuca unikalny, 
+      niesformatowany wyj±tek (symulacja awarii wêz³a). Us³uga robocza celowo dopuszcza do sytuacji awaryjnej i 
+       przerywa przetwarzanie bie¿±cej iteracji (wyj±tek nie jest wy³apywany wewnêtrznie przez logikê zapisu). 
+       Czas ponownej widoczno¶ci wiadomo¶ci w kolejce nale¿y jawnie ustawiæ na 3 sekundy (visibilityTimeout: TimeSpan.FromSeconds(3)). 
+       Brak jawnego usuniêcia wiadomo¶ci z kolejki sprawia, ¿e po up³ywie czasu niewidoczno¶ci (visibility timeout) 
+       komunikat automatycznie powraca do kolejki, a Worker podejmuje kolejn± próbê jego przetworzenia. 
+   E. W przypadku sukcesu (gdy wyj±tek nie wyst±pi), zakodowana tre¶æ jest zapisywana jako nowy BLOB w drugim kontenerze 
+      (kontener wyj¶ciowy, np. encoded-files), a komunikat jest bezpowrotnie usuwany z kolejki za pomoc± tokenu PopReceipt. 
 
 3. Punkt koñcowy pobierania [GET] /api/processing/download/{nazwa} ? 10%
- - Dzia³anie: Pobiera i zwraca w postaci czystego ci±gu znaków (string) zawarto¶æ przetworzonego, zakodowanego pliku bezpo¶rednio z drugiego kontenera (wyj¶ciowego).
+ - Dzia³anie: Pobiera i zwraca w postaci czystego ci±gu znaków (string) zawarto¶æ przetworzonego, zakodowanego pliku bezpo¶rednio z 
+   drugiego kontenera (wyj¶ciowego).
 
 4. Zarz±dzanie infrastruktur± chmurow± w emulatorze Azurite
- - Obs³uga Kolejki (20%): Prawid³owa i w pe³ni asynchroniczna komunikacja z QueueClient, w³a¶ciwe operowanie mechanizmem widoczno¶ci komunikatów (wymagane jawne ustawienie visibilityTimeout na 3 sekundy) oraz ich usuwaniem. 
- - Obs³uga kontenera wej¶ciowego (10%): Prawid³owe zarz±dzanie strumieniami danych podczas zapisu i odczytu oryginalnych plików w Blob Storage. 
+ - Obs³uga Kolejki (20%): Prawid³owa i w pe³ni asynchroniczna komunikacja z QueueClient, w³a¶ciwe operowanie mechanizmem widoczno¶ci 
+   komunikatów (wymagane jawne ustawienie visibilityTimeout na 3 sekundy) oraz ich usuwaniem. 
+ - Obs³uga kontenera wej¶ciowego (10%): Prawid³owe zarz±dzanie strumieniami danych podczas zapisu i odczytu oryginalnych plików
+   w Blob Storage. 
  - Obs³uga kontenera wyj¶ciowego (10%): Prawid³owy zapis przetworzonych danych do drugiego, odseparowanego zasobu Blob Storage. 
 
 5. Klient testowy .NET (HttpClient) ? 10%
- - Dzia³anie: Osobna aplikacja konsolowa (lub zintegrowany zestaw testowy), która za pomoc± obiektu HttpClient automatycznie wykonuje nastêpuj±cy scenariusz testowy:
-   A. Wysy³a w pêtli dok³adnie 5 ró¿nych ¿±dañ do punktu koñcowego /api/processing/encode (symuluj±c jednoczesne przes³anie 5 plików do przetwarzania).
+ - Dzia³anie: Osobna aplikacja konsolowa (lub zintegrowany zestaw testowy), która za pomoc± obiektu HttpClient automatycznie wykonuje
+   nastêpuj±cy scenariusz testowy:
+   A. Wysy³a w pêtli dok³adnie 5 ró¿nych ¿±dañ do punktu koñcowego /api/processing/encode 
+      (symuluj±c jednoczesne przes³anie 5 plików do przetwarzania).
    B. Wprowadza wymuszone opó¼nienie trwaj±ce dok³adnie 4 sekundy (Task.Delay(TimeSpan.FromSeconds(4))).
-   C. Po up³ywie tego czasu, odpytuje po kolei punkt koñcowy /api/processing/download/{nazwa} dla ka¿dego z 5 plików i wypisuje wyniki w konsoli.
- - Cel dydaktyczny: Poniewa¿ czas niewidoczno¶ci wiadomo¶ci wynosi 3 sekundy, a pauza klienta trwa 4 sekundy, w logach konsoli Workera studenci wyra¼nie zobacz± sytuacje awaryjne (b³êdy), automatyczne powroty wiadomo¶ci do kolejki po 3 sekundach oraz ich udane, ponowne przetworzenie, zanim klient zg³osi siê po gotowy wynik.
+   C. Po up³ywie tego czasu, odpytuje po kolei punkt koñcowy /api/processing/download/{nazwa} dla ka¿dego z 5 plików i 
+      wypisuje wyniki w konsoli.
+ - Cel dydaktyczny: Poniewa¿ czas niewidoczno¶ci wiadomo¶ci wynosi 3 sekundy, a pauza klienta trwa 4 sekundy, w logach konsoli Workera 
+   studenci wyra¼nie zobacz± sytuacje awaryjne (b³êdy), automatyczne powroty wiadomo¶ci do kolejki po 3 sekundach oraz ich udane, 
+   ponowne przetworzenie, zanim klient zg³osi siê po gotowy wynik.
 
-Choæ dopuszczalne jest umieszczenie kodu w klasycznych folderach jednego projektu, wysoce zalecane (ale opcjonalne) jest zorganizowanie struktury aplikacji zgodnie z zasadami Czystej Architektury (Clean Architecture). Elementy mo¿na odseparowaæ w ramach jednego projektu, stosuj±c przejrzysty podzia³ na foldery:
+------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------
+
+Choæ dopuszczalne jest umieszczenie kodu w klasycznych folderach jednego projektu, wysoce zalecane (ale opcjonalne) jest 
+zorganizowanie struktury aplikacji zgodnie z zasadami Czystej Architektury (Clean Architecture). 
+Elementy mo¿na odseparowaæ w ramach jednego projektu, stosuj±c przejrzysty podzia³ na foldery:
  - Core/Domain: Zawiera czyste modele danych oraz autonomiczn±, niezale¿n± od chmury klasê z algorytmem Rot13Cipher.
  - Core/Application: Definiuje interfejsy dla us³ug magazynowych (np. IFileStorage, IJobQueue).
- - Infrastructure: Zawiera techniczne implementacje tych interfejsów przy u¿yciu oficjalnego SDK Azure (BlobContainerClient, QueueClient) oraz konfiguracjê kontenerów chmurowych. 
- - Presentation/API: Miejsce dla kontrolerów wystawiaj±cych endpoints HTTP oraz rejestracji us³ug t³a (QueueProcessorWorker) w kontenerze zale¿no¶ci. 
+ - Infrastructure: Zawiera techniczne implementacje tych interfejsów przy u¿yciu oficjalnego SDK Azure (BlobContainerClient, QueueClient)
+   oraz konfiguracjê kontenerów chmurowych. 
+ - Presentation/API: Miejsce dla kontrolerów wystawiaj±cych endpoints HTTP oraz rejestracji us³ug t³a (QueueProcessorWorker) 
+   w kontenerze zale¿no¶ci. 
+
+------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------
 
 Uwagi:
 Po zakoñczeniu zadania proszê przes³aæ wszystkie pliki kodu ¼ród³owego, konfiguracyjne (.cs, appsettings.json) oraz pliki wszystkich projektów i rozwi±zania (pliki .csproj i .sln).
