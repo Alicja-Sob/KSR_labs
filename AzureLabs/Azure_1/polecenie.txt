@@ -17,20 +17,22 @@ Nale¿y przygotowaæ aplikacjê ASP.NET Core Web API (wykorzystuj±c± kontrolery i w
 przetestowaæ j± z wykorzystaniem lokalnego emulatora Azurite.  Us³uga musi wystawiaæ dokumentacjê interfejsu testowego 
 (Swagger lub Scalar) i implementowaæ nastêpuj±ce punkty koñcowe (endpoints):
 
-1. Rejestracja u¿ytkownika [POST] /api/users/register ? 20%
++ 1. Rejestracja u¿ytkownika [POST] /api/users/register ? 20%
 
 Dzia³anie: Tworzy nowego u¿ytkownika w bazie NoSQL. Dane (login i has³o) powinny byæ zapisywane w Azure Table Storage.
  Klucze tabeli: Zaprojektuj odpowiednio PartitionKey oraz RowKey dla encji u¿ytkownika.
 
-2. Logowanie [POST] /api/auth/login ? 20%
++ 2. Logowanie [POST] /api/auth/login ? 20%
 
 Dzia³anie: Sprawdza w Table Storage, czy u¿ytkownik o podanym loginie istnieje i czy wprowadzone has³o jest poprawne.
 Wynik: Je¿eli dane s± poprawne, serwer generuje nowy unikalny identyfikator sesji (Guid.NewGuid()), 
 zapisuje tê sesjê w osobnej tabeli (powtarzaj±c operacjê zapisu dla sesji w Table Storage) i zwraca ten identyfikator
 (token sesji) w formacie JSON
 
-3. Wylogowanie [DELETE] /api/auth/logout/{login} ? 10%
++ 3. Wylogowanie [DELETE] /api/auth/logout/{login} ? 10%
 Dzia³anie: Usuwa aktywn± sesjê dla danego u¿ytkownika z tabeli sesji w Table Storage.
+
+------------------------------------------------------------------------------------------------------------------------------
 
 4. Zapisanie pliku [POST] /api/files ? 30%
 
@@ -49,7 +51,7 @@ powi±zanego z u¿ytkownikiem.
 
 Uwagi:
 
-Obiekty TableServiceClient oraz BlobServiceClient powinny byæ pobierane z systemu wstrzykiwania zale¿no¶ci (DI) za pomoc± 
++ Obiekty TableServiceClient oraz BlobServiceClient powinny byæ pobierane z systemu wstrzykiwania zale¿no¶ci (DI) za pomoc± 
 konfiguracji AddAzureClients w pliku Program.cs.
 
-Connection string konfigurujemy w appsettings.Development.json jako "AzureStorage": "UseDevelopmentStorage=true".
++ Connection string konfigurujemy w appsettings.Development.json jako "AzureStorage": "UseDevelopmentStorage=true".

@@ -76,7 +76,7 @@ public class AuthorizationService : IAuthorizationService
             return false;
         }
     }
-    public async Task<bool> ValidateSessionAsync(string login, string sessionId)
+    public async Task<bool> ValidateSessionAsync(string login, string sessionId)    //checks if the session exists and is correct
     {
         try
         {

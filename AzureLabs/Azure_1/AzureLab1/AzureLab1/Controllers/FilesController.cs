@@ -32,7 +32,7 @@ public class FilesController : ControllerBase
 
         if (!validSession)
         {
-            return Unauthorized("Invalid or expired session.");
+            return Unauthorized("Invalid session.");
         }
 
         await _fileService.SaveFileAsync(
