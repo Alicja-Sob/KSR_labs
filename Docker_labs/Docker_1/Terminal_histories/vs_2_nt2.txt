@@ -1,0 +1,6 @@
+#TYPE Microsoft.PowerShell.Commands.HistoryInfo
+"Id","CommandLine","ExecutionStatus","StartExecutionTime","EndExecutionTime"
+"1","& { Import-Module ""$env:VSAPPIDDIR\..\Tools\Microsoft.VisualStudio.DevShell.dll""; Enter-VsDevShell -SkipAutomaticLocation -SetDefaultWindowTitle -InstallPath $env:VSAPPIDDIR\..\..\}","Completed","10.06.2026 09:56:52","10.06.2026 09:56:54"
+"2","dotnet publish","Completed","10.06.2026 09:57:44","10.06.2026 09:57:49"
+"3","dotnet build","Completed","10.06.2026 09:58:11","10.06.2026 09:58:15"
+"4","dotnet run","Stopped","10.06.2026 09:58:24","10.06.2026 10:00:33"

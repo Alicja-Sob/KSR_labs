@@ -14,5 +14,5 @@
 | Lab 11      | MassTransit | sagi                                                         | 20-05-2026    | 100/100     |
 | Lab 12      | Azure       | WCF, tabele, BLOBy                                           | 26-05-2026    | 85/100      |
 | Lab 13      | Azure       |  kolejki, worker                                             | 27-05-2026    | 100/100     |
-| Lab 14      | Docker      |                                                              | xx-06-2026    | xx/100      |
-| Lab 15      | Docker      |                                                              | xx-06-2026    | xx/100      |
+| Lab 14      | Docker      |                                                              | 12-06-2026    | 25+?/100      |
+| Lab 15      | Docker      |                                                              | 14-06-2026    | ??/100      |
