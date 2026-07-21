@@ -6,7 +6,7 @@
 | Lab 3       | COM         | serwer w pliku exe                                           | 11-03-2026    | 100/100     |
 | Lab 4       | COM         | COM w C#, GAC, C++ <-> C#                                    | 08-03-2026    | 90/100      |
 | Lab 5       | WCF         | self-hosting , bindingi, metadane, wyjatki                   | 25-03-2026    | 100/100     |
-| Lab 6       | WCF         | wolania, czas ¿ycia serwera, WCF service application, REST   | 06-04-2026    | 100/100     |
+| Lab 6       | WCF         | wolania, czas zycia serwera, WCF service application, REST   | 06-04-2026    | 100/100     |
 | Lab 7       | WCF         | REST, routing, publikacja i wyszukiwanie uslugi              | 15-04-2026    | 100/100     |
 | Lab 8       | RabbitMQ    |                                                              | 22-04-2026    | 100/100     |
 | Lab 9       | MassTransit | wydawca/abonent, obsluga wiadomosci, wersjonowanie, naglowki | 29-04-2026    | 100/100     |
@@ -14,5 +14,5 @@
 | Lab 11      | MassTransit | sagi                                                         | 20-05-2026    | 100/100     |
 | Lab 12      | Azure       | WCF, tabele, BLOBy                                           | 26-05-2026    | 85/100      |
 | Lab 13      | Azure       |  kolejki, worker                                             | 27-05-2026    | 100/100     |
-| Lab 14      | Docker      |                                                              | 12-06-2026    | 25+?/100      |
-| Lab 15      | Docker      |                                                              | 14-06-2026    | ??/100      |
+| Lab 14      | Docker      |                                                              | 12-06-2026    | 62.5/100    |
+| Lab 15      | Docker      |                                                              | 14-06-2026    | 100/100     |
